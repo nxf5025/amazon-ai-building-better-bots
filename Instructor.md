@@ -28,6 +28,7 @@ Create the following IAM role that users will associate with their Lambda functi
             "Resource": "arn:aws:logs:*:*:*"
         }
     ]
-}```
+}
+```
 
 - Trust relationship: lambda.amazonaws.com
