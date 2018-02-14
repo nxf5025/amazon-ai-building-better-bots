@@ -45,14 +45,21 @@ First, we'll create the Amazon Lex bot.  Then, we'll add some Lambda Functions t
     - Session timeout:  `5 min`
     - IAM role:  (accept the default) `AWSServiceRoleForLexBots`
 	- COPPA:  (our bot is not directed at children) `No`
-1. Review the Error handling settings
+1. Navigate to the the Error handling settings and set the following
+
+![Error Handling](/images/error_handling.png)
+
     - Prompts:  (one prompt)  `Sorry, but I didn't understand that.  Would you try again, please?`
     - Maximum number of retries:  `2`
     - Hang-up phrase:  (one phrase) `Sorry, I could not understand.  Goodbye.`
 
 #### 2. Create Order Beverage Intent
+
+![Intents](/images/intents.png)
+
 From the left, add a new Intent called `cafeOrderBeverageIntent` with the following settings and click "Save Intent" to save the Intent.  
 To work independently in a shared environment, use your initials in the Intent name (e.g., `cafeOrderBeverageIntentXXX`).
+
 
 1. Lambda initialization and validation (leave unchecked)
 1. Fulfillment:  choose "Return parameters to client" for now
@@ -67,9 +74,12 @@ Let me get a {BeverageSize} {Creamer} {BeverageType}
 ```
 
 #### 3. Create Slot types
+
+![Slots](/images/slots.png)
+
 Add the following Slot types (each value should be a separate entry); remember to "Save slot type" as you go along.
 To work independently in a shared environment, use your initials in the names (e.g., `cafeBeverageTypeXXX`).  
-Note:  Although they are saved with the AWS Account, Slot Types will only show up in the list when they are associated in the next step.
+Note:  Although they are saved with the AWS Account, ***Slot Types will only show up in the list on the left when they are associated in the next step.***
 
 Slot type name | Description | Values (each entry on a separate line)
 -------------- | ----------- | --------------------
