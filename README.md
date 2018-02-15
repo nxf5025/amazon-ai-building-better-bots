@@ -1,5 +1,6 @@
-# amz-ai-building-better-bots
-Code samples related to [Building Better Bots](https://aws.amazon.com/blogs/ai/building-better-bots-part-2/) published on the AI Blog
+# Introduction
+
+This workshop walks through the steps of creating an interactive chat bot using the AWS Lex and Polly services.
 
 # CoffeeBot
 
@@ -78,6 +79,7 @@ Let me get a {BeverageSize} {Creamer} {BeverageType}
 
 Add the following Slot types (each value should be a separate entry); remember to "Save slot type" as you go along.
 To work independently in a shared environment, use your initials in the names (e.g., `cafeBeverageTypeXXX`).  
+
 Note:  Although they are saved with the AWS Account, ***Slot Types will only show up in the list on the left when they are associated in the next step.***
 
 Slot type name | Description | Values (each entry on a separate line)
@@ -110,18 +112,23 @@ Once built, a new panel will appear on the right of the Amazon Lex Console where
 ## Lambda Function
 Now that we've tested that our application works, let's add more logic to validate our choices and handle the processing of the order.
 
+![Lambda](/images/lambda.png)
+
 1. Create the `cafeOrderCoffee` function by saving `cafeOrderCoffee_lambda.js` as a Node.js 6.10 function
 	- To work independently in a shared environment, use your initials in the function name (e.g., `cafeOrderCoffeeXXX`)
-    - You can get the function source [here](https://github.com/awslabs/amz-ai-building-better-bots/blob/master/src/index.js)
+    - You can get the function source [here](/src/index.js)
     - (No need to set up a trigger; you can accept default values for most of the configuration)
-    - Choose an IAM role that includes the `AWSLambdaBasicExecutionRole` Managed Policy.  If no such role exists, you can create a new IAM Role using one of these approaches:
-        - Choose "Create new role from template(s)", provide a role name, and choose `Basic Lambda permissions` from the "Policy templates" dropdown
-        - Choose "Create a Custom role", which should open up a new tab where an IAM role is shown; review the policy document and click "Allow"
+    - Choose an IAM role that includes the `AWSLambdaBasicExecutionRole` Managed Policy.  There may already be one named `coffeebot-lambda-role`
+        - If no such role exists, you can create a new IAM Role using one of these approaches:
+            - Choose "Create new role from template(s)", provide a role name, and choose `Basic Lambda permissions` from the "Policy templates" dropdown
+            - Choose "Create a Custom role", which should open up a new tab where an IAM role is shown; review the policy document and click "Allow"
 1. Configure the Test event and test to confirm the function works as expected (see `cafeOrderCoffee_test.json`)
-    - you can get the event source [here](https://github.com/awslabs/amz-ai-building-better-bots/blob/master/test/cafeOrderCoffee_test.json)
+    - you can get the event source [here](/test/cafeOrderCoffee_test.json)
 1. You'll notice that the function checks the bot name it receives (``if (event.bot.name !== 'CoffeeBot')``); remember to change this value in the function and in the test event to match the name you used for your bot
 
 ## Test the bot
+Navigate back to the Amazon Lex console to reconfigure your bot to use the Lambda function for validation.
+
 1. From the Lex Console, select the `CoffeeBot` bot and choose `Latest` from the version drop down to make changes
 1. Modify the `cafeOrderBeverageIntent` Intent
 	-  Add `Thanks for choosing PressoBot!` as the "Goodbye message"
@@ -132,8 +139,10 @@ Now that we've tested that our application works, let's add more logic to valida
 1. Build the bot
 1. Test using the Amazon Lex Console; do you see any responses when you ask `May I have a mocha?`
 
-## Android App
-Now, let's build this voice bot through an Android App that talks to you using Amazon Polly and Amazon Lex.
+## Android or Web Application
+If you'd like to explore further, you can integrate your Amazon Lex bot with an Android application or a web page.
+
+### Android Application 
 You'll need the following in addition to your AWS account:
 - Android development environment ([download](https://developer.android.com/sdk))
 - To test voice (you can use the simulator for text)
@@ -145,3 +154,11 @@ You'll need the following in addition to your AWS account:
 1. Add the "Conversational Bots" feature to the project.  When prompted, import `CoffeeBot`.  Mobile Hub takes care of a number of important details behind the scenes.  A new Amazon Cognito Federated Identity Pool is created for this new app along with roles so that the users can interact with Lex (using voice and text).
 1. Source code for the new app is immediately available for download.
 1. Follow the instructions in the `READ_ME/index.html` file to setup, compile, and run the app.
+
+### Web Application
+
+Using the AWS SDK for Javascript, you can integrate your Amazon Lex bot in a web page that will both capture and return audio to your end users.
+
+[This article on the machine learning blog](https://aws.amazon.com/blogs/machine-learning/capturing-voice-input-in-a-browser/) will walk you through the steps to setup this integration.  When using the Lex PostContent API call, you will pass the name of your deployed bot as a parameter.
+
+You can also use the native integrations to connect your bot to Facebook Messenger, Slack, Twilio, and Kik.
