@@ -3,7 +3,7 @@ Code samples related to [Building Better Bots](https://aws.amazon.com/blogs/ai/b
 
 # CoffeeBot
 
-CoffeeBot is a transactional chat bot that can help one order a mocha (relies on AWS Mobile Hub and Android).
+CoffeeBot is a transactional chat bot that can help one order a coffee.
 
 Consider this conversation:
 > User:  May I have a mocha?
@@ -26,18 +26,17 @@ Consider this conversation:
 
 > CoffeeBot:  Great! Your mocha will be available for pickup soon. Thanks for using CoffeeBot!
 
-Let's build this voice bot, an Android App that talks to you using Amazon Polly and Amazon Lex.
-You'll need the following in addition to your AWS account:
-- Android development environment ([download](https://developer.android.com/sdk))
-- To test voice (you can use the simulator for text)
-	- An Android device
-	- A USB cable for USB debugging ([more info for Amazon Fire tablets](https://developer.amazon.com/public/solutions/devices/fire-tablets/app-development/setting-up-your-development-environment-for-fire-tablets))
 
-
-First, we'll create the Amazon Lex bot.  Then, we'll add some Lambda Functions to bring it to life.  Finally, we'll put it all together with Mobile Hub and the Lex Android SDK.
+First, we'll create the Amazon Lex bot.  Then, we'll add some Lambda Functions to bring it to life.  Lastly, as an optional step, create an Android application with the Mobile Hub and the Lex Android SDK.
 
 ## Amazon Lex bot
+Amazon Lex is a service for building conversational interfaces into any application using voice and text.
+
+We will be creating a custom bot in the console and applying the necessary intents and custom slots in order to understand the coffee order.
+
 #### 1. Create bot
+First, we'll create the bot.  
+
 1. From the Amazon Lex console, create a Custom bot with these settings (you can see these in the "Settings" tab later)
     - Bot name:  `CoffeeBot`
 		- To work independently in a shared environment, use your initials in the name (e.g., `CoffeeBotXXX`)
@@ -49,9 +48,9 @@ First, we'll create the Amazon Lex bot.  Then, we'll add some Lambda Functions t
 
 ![Error Handling](/images/error_handling.png)
 
-    - Prompts:  (one prompt)  `Sorry, but I didn't understand that.  Would you try again, please?`
-    - Maximum number of retries:  `2`
-    - Hang-up phrase:  (one phrase) `Sorry, I could not understand.  Goodbye.`
+- Prompts:  (one prompt)  `Sorry, but I didn't understand that.  Would you try again, please?`
+- Maximum number of retries:  `2`
+- Hang-up phrase:  (one phrase) `Sorry, I could not understand.  Goodbye.`
 
 #### 2. Create Order Beverage Intent
 
@@ -89,6 +88,8 @@ Slot type name | Description | Values (each entry on a separate line)
 `cafeBeverageTemp` | | `kids`; `hot`; `iced`
 
 #### 4. Add Slots to the Intent
+From the intent page of your cafeOrderBeverageIntent, locate "Slots" midway down the page.
+
 Add the following entries to the list of Slots, choosing the Slot Types created above.  Click "Save Intent".
 
 Required | Name            | Slot type | Prompt
@@ -99,9 +100,16 @@ Required | Name            | Slot type | Prompt
  &nbsp;| `BeverageTemp` | `cafeBeverageTemp` | `Would you like that iced or hot?`
 
 #### 5. Test
-Build the app and test some of the Utterances in the Test Bot dialog at the bottom right of the Amazon Lex Console.  For example, if you say `May I have a chai?`, does Lex correctly map `chai` to the `BeverageType` slot?
+
+![Build](/images/build.png)
+
+Click the build icon in the upper right hand corner to build the app.  This can take a few minutes.
+
+Once built, a new panel will appear on the right of the Amazon Lex Console where you can test some of the Utterances in the Test Bot dialog.  For example, if you say `May I have a chai?`, does Lex correctly map `chai` to the `BeverageType` slot?
 
 ## Lambda Function
+Now that we've tested that our application works, let's add more logic to validate our choices and handle the processing of the order.
+
 1. Create the `cafeOrderCoffee` function by saving `cafeOrderCoffee_lambda.js` as a Node.js 6.10 function
 	- To work independently in a shared environment, use your initials in the function name (e.g., `cafeOrderCoffeeXXX`)
     - You can get the function source [here](https://github.com/awslabs/amz-ai-building-better-bots/blob/master/src/index.js)
@@ -125,6 +133,14 @@ Build the app and test some of the Utterances in the Test Bot dialog at the bott
 1. Test using the Amazon Lex Console; do you see any responses when you ask `May I have a mocha?`
 
 ## Android App
+Now, let's build this voice bot through an Android App that talks to you using Amazon Polly and Amazon Lex.
+You'll need the following in addition to your AWS account:
+- Android development environment ([download](https://developer.android.com/sdk))
+- To test voice (you can use the simulator for text)
+    - An Android device
+    - A USB cable for USB debugging ([more info for Amazon Fire tablets](https://developer.amazon.com/public/solutions/devices/fire-tablets/app-development/setting-up-your-development-environment-for-fire-tablets))
+
+
 1. From the Mobile Hub console, create a new project called `CoffeeBot`.
 1. Add the "Conversational Bots" feature to the project.  When prompted, import `CoffeeBot`.  Mobile Hub takes care of a number of important details behind the scenes.  A new Amazon Cognito Federated Identity Pool is created for this new app along with roles so that the users can interact with Lex (using voice and text).
 1. Source code for the new app is immediately available for download.
