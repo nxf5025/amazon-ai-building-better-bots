@@ -162,3 +162,20 @@ Using the AWS SDK for Javascript, you can integrate your Amazon Lex bot in a web
 [This article on the machine learning blog](https://aws.amazon.com/blogs/machine-learning/capturing-voice-input-in-a-browser/) will walk you through the steps to setup this integration.  When using the Lex PostContent API call, you will pass the name of your deployed bot as a parameter.
 
 You can also use the native integrations to connect your bot to Facebook Messenger, Slack, Twilio, and Kik.
+
+### Cleanup
+
+When you have completed the lab, please delete the following resources from your account when complete.
+
+- In the Lambda console
+    - Lambda function `cafeOrderCoffeeXXX`
+- In the Lex console (in this order)
+    1. Bots
+        - `CoffeeBotXXX`
+    1. Intents
+        - `cafeOrderBeverageIntentXXX`
+    1. Slot Types
+        - `cafeBeverageSizeXXX`
+        - `cafeBeverageTempXXX`
+        - `cafeBeverageTypeXXX`
+        - `cafeCreamerTypeXXX`
