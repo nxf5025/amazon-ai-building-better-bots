@@ -163,7 +163,7 @@ Using the AWS SDK for Javascript, you can integrate your Amazon Lex bot in a web
 
 You can also use the native integrations to connect your bot to Facebook Messenger, Slack, Twilio, and Kik.
 
-### Cleanup
+# Cleanup
 
 When you have completed the lab, please delete the following resources from your account when complete.
 
