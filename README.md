@@ -127,7 +127,7 @@ Now that we've tested that our application works, let's add more logic to valida
 1. You'll notice that the function checks the bot name it receives (``if (event.bot.name !== 'CoffeeBot')``); remember to change this value in the function and in the test event to match the name you used for your bot
 
 ## Test the bot
-Navigate back to the Amazon Lex console to reconfigure your bot to use the Lambda function for validation.
+Navigate back to the Amazon Lex console to reconfigure your bot to use the Lambda function for validation.  Try to order a beverage other than a mocha or a chai.  When it does not work, take look at the source code for the lambda validation function to understand why you get a different response.
 
 1. From the Lex Console, select the `CoffeeBot` bot and choose `Latest` from the version drop down to make changes
 1. Modify the `cafeOrderBeverageIntent` Intent
