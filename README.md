@@ -180,7 +180,7 @@ Navigate back to the Amazon Lex console to reconfigure your bot to use the Lambd
 1. Build the bot
 1. Test using the Amazon Lex Console; do you see any responses when you ask `May I have a coffee?`
 
-Try to order a beverage other than a mocha or a chai, like a coffee.  You should see a message stating that it is not available.  To understand why you're getting a different response than earlier, take look at the source code for the lambda validation.
+Try to order a beverage like a coffee.  You should see a message stating that it is not available.  Now try to order a mocha or a chai and see the response.  To understand why you're getting a different response than earlier, take look at the source code for the lambda validation.
 
 ## Android or Web Application
 If you'd like to explore further, you can integrate your Amazon Lex bot with an Android application or a web page.  This is where you'd use the "Publish" feature of Lex to push your configured version to production.
