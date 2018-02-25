@@ -42,6 +42,10 @@ Once you are logged into your AWS account, you will be presented with a list of 
 
 ![Console](./images/console.png)
 
+You may be directed to select at region.  At the time of writing, Lex is only available in the Virginia and Ireland regions.  Choose the region that is the closest to you or the one that the instructor directs.
+
+![Region](./images/region.png)
+
 If this is your first time in the Amazon Lex console, you may be prompted with a welcome page.  Choose "Get Started" and then "Cancel" so that you are at the Lex page with "Bots", "Intents", and "Slot Types" on the left hand navigation.  If this isn't your first time, you will be brought directly to the Lex console.
 
 ![LexMainPage](./images/lexmain.png)
@@ -65,10 +69,8 @@ First, we'll create the bot.
 From the left, add a new Intent called `cafeOrderBeverageIntent` with the following settings and click "Save Intent" to save the Intent.  
 To work independently in a shared environment, use your initials in the Intent name (e.g., `cafeOrderBeverageIntentXXX`).
 
+Add the following options to your intent:
 
-1. Lambda initialization and validation (leave unchecked)
-1. Fulfillment:  choose "Return parameters to client" for now
-1. Confirmation prompt:  `You'd like me to order a {BeverageSize} {BeverageType}.  Is that right?` to confirm and `Okay.  Nothing to order this time.  See you next time!` to cancel.
 1. Sample Utterances:  add these to the list of sample utterances so the bot recognizes similar phrases (each entry on a separate line)
 ```
 I would like a {BeverageSize} {BeverageType}
@@ -77,25 +79,33 @@ May I have a {BeverageSize} {Creamer} {BeverageType}
 Can I get a {BeverageSize} {BeverageTemp} {Creamer} {BeverageType}
 Let me get a {BeverageSize} {Creamer} {BeverageType}
 ```
+1. Lambda initialization and validation (leave unchecked)
+1. Fulfillment:  choose "Return parameters to client" for now
+1. Confirmation prompt:  `You'd like me to order a {BeverageSize} {BeverageType}.  Is that right?` to confirm and `Okay.  Nothing to order this time.  See you next time!` to cancel.
+
+When everything is entered, choose "Save Intent" at the bottom.
 
 #### Create Slot types
 
+In the upper left hand corner, select the "+" next to "Slot Type" to add new slots to your account.
+
 ![Slots](./images/slots.png)
 
-Add the following Slot types (each value should be a separate entry); remember to "Save slot type" as you go along.
-To work independently in a shared environment, use your initials in the names (e.g., `cafeBeverageTypeXXX`).  
+Add the following Slot types (each value should be a separate entry). To work independently in a shared environment, use your initials in the names (e.g., `cafeBeverageTypeXXX`).  
 
-Note:  Although they are saved with the AWS Account, ***Slot Types will only show up in the list on the left when they are associated in the next step.***
+Note:  Although they are saved with the AWS Account, ***Slot Types will only show up in the list on the left when they are associated in the next step.***  Keep creating slots until you've completed all in the following table:
+
+Choose "Save Slot Type" when each one is completed.
 
 Slot type name | Description | Values (each entry on a separate line)
 -------------- | ----------- | --------------------
-`cafeBeverageType` | *Slot types are shared at the account level so text would help other developers determine if they can reuse this Slot type.*| `coffee`; `cappuccino`; `latte`; `mocha`; `chai`; `espresso`; `smoothie`
-`cafeBeverageSize` | | `kids`; `small`; `medium`; `large`; `extra large`; `six ounce`; `eight ounce`; `twelve ounce`; `sixteen ounce`; `twenty ounce`
-`cafeCreamerType` | | `two percent`; `skim milk`; `soy`; `almond`; `whole`; `skim`; `half and half`
-`cafeBeverageTemp` | | `kids`; `hot`; `iced`
+`cafeBeverageTypeXXX` | *Slot types are shared at the account level so text would help other developers determine if they can reuse this Slot type.*| `coffee`; `cappuccino`; `latte`; `mocha`; `chai`; `espresso`; `smoothie`
+`cafeBeverageSizeXXX` | | `kids`; `small`; `medium`; `large`; `extra large`; `six ounce`; `eight ounce`; `twelve ounce`; `sixteen ounce`; `twenty ounce`
+`cafeCreamerTypeXXX` | | `two percent`; `skim milk`; `soy`; `almond`; `whole`; `skim`; `half and half`
+`cafeBeverageTempXXX` | | `kids`; `hot`; `iced`
 
 #### Add Slots to the Intent
-From the intent page of your cafeOrderBeverageIntent, locate "Slots" midway down the page.
+Navigate back to the intent page of your cafeOrderBeverageIntent, locate "Slots" midway down the page.
 
 Add the following entries to the list of Slots, choosing the Slot Types created above.  Click "Save Intent".
 
@@ -103,8 +113,8 @@ Required | Name            | Slot type | Prompt
 -------- | --------------- | --------- | -------------
 `Yes` | `BeverageType` | `cafeBeverageType` | `What kind of beverage would you like?  For example, mocha, chai, etc.`
 `Yes` | `BeverageSize` | `cafeBeverageSize` | `What size?  small, medium, large?`
- &nbsp;| `Creamer` | `cafeCreamerType` | `What kind of milk or creamer?`
- &nbsp;| `BeverageTemp` | `cafeBeverageTemp` | `Would you like that iced or hot?`
+`No (unchecked)` | `Creamer` | `cafeCreamerType` | `What kind of milk or creamer?`
+`No (unchecked)` | `BeverageTemp` | `cafeBeverageTemp` | `Would you like that iced or hot?`
 
 #### Error Handling
 
@@ -122,7 +132,7 @@ Required | Name            | Slot type | Prompt
 
 Click the build icon in the upper right hand corner to build the app.  This can take a few minutes.
 
-Once built, a new panel will appear on the right of the Amazon Lex Console where you can test some of the Utterances in the Test Bot dialog.  For example, if you say `May I have a chai?`, does Lex correctly map `chai` to the `BeverageType` slot?
+Once built, a new panel will appear on the right of the Amazon Lex Console where you can test some of the Utterances in the Test Bot dialog.  For example, if you say `May I have a coffee?`, does Lex correctly map `coffee` to the `BeverageType` slot?
 
 ## Lambda Function
 Now that we've tested that our application works, let's add more logic to validate our choices and handle the processing of the order.  We'll be using another service called AWS Lambda to do this.  AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume.
@@ -144,13 +154,21 @@ Choose "Services" from the navigation bar at the top of the page, and search for
 1. Once created, you can scroll to the bottom of the page to edit the code for you function.
     - You can get the function source [here](./src/index.js)
     - There is no need to set up a trigger; you can accept default values for most of the configuration
-1. In the code block at the bottom, you'll notice that the function checks the bot name it receives (``if (event.bot.name !== 'CoffeeBot')``); You will need to change this value in the function and in the test event to match the name you used for your bot
-1. Configure the Test event and test to confirm the function works as expected (see `cafeOrderCoffee_test.json`)
-    - you can get the event source [here](./test/cafeOrderCoffee_test.json)
+
+![Lambda Code](./images/lambda_code.png)
+
+1. In the code block at the bottom, you'll notice that the function checks the bot name it receives (``if (event.bot.name !== 'CoffeeBot')``); You will need to change this value in the function and in the test event to match the name you used for your bot. Click "Save" at the top to save your Lambda function.
+
+
+Now we'll configure a test event to ensure our Lambda function works.  
+1. At the top of the page, choose "Select a test event".
+1. Configure the Test event and test to confirm the function works as expected
+    - You can get the event source [here](./test/cafeOrderCoffee_test.json)
+    - After saving your test event, you can choose "test" in the console to ensure it works as expected.
 
 
 ## Test the bot
-Navigate back to the Amazon Lex console to reconfigure your bot to use the Lambda function for validation.  Try to order a beverage other than a mocha or a chai.  When it does not work, take look at the source code for the lambda validation function to understand why you get a different response.
+Navigate back to the Amazon Lex console to reconfigure your bot to use the Lambda function for validation.  
 
 1. From the Lex Console, select the `CoffeeBot` bot and choose `Latest` from the version drop down to make changes
 1. Modify the `cafeOrderBeverageIntent` Intent
@@ -160,10 +178,12 @@ Navigate back to the Amazon Lex console to reconfigure your bot to use the Lambd
 	- Associate it with the new `cafeOrderCoffee` Lambda function for (select "Lambda function" in the "Fulfillment" area); remember to click "Save Intent"
     	-  The Lambda function overrides the "Goodbye message"
 1. Build the bot
-1. Test using the Amazon Lex Console; do you see any responses when you ask `May I have a mocha?`
+1. Test using the Amazon Lex Console; do you see any responses when you ask `May I have a coffee?`
+
+Try to order a beverage other than a mocha or a chai, like a coffee.  You should see a message stating that it is not available.  To understand why you're getting a different response than earlier, take look at the source code for the lambda validation.
 
 ## Android or Web Application
-If you'd like to explore further, you can integrate your Amazon Lex bot with an Android application or a web page.
+If you'd like to explore further, you can integrate your Amazon Lex bot with an Android application or a web page.  This is where you'd use the "Publish" feature of Lex to push your configured version to production.
 
 ### Android Application 
 You'll need the following in addition to your AWS account:
