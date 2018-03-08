@@ -1,9 +1,8 @@
-# Introduction
+# Amazon Lex Chatbot Workshop
 
-Amazon Lex is a service for building conversational interfaces into any application using voice and text. Amazon Lex provides the advanced deep learning functionalities of automatic speech recognition (ASR) for converting speech to text, and natural language understanding (NLU) to recognize the intent of the text, to enable you to build applications with highly engaging user experiences and lifelike conversational interactions. With Amazon Lex, the same deep learning technologies that power Amazon Alexa are now available to any developer, enabling you to quickly and easily build sophisticated, natural language, conversational bots (“chatbots”).
+Amazon Lex is a service for building conversational interfaces into any application using voice and text. Amazon Lex provides the advanced deep learning functionalities of automatic speech recognition (ASR) for converting speech to text, and natural language understanding (NLU) to recognize the intent of the text, to enable you to build applications with highly engaging user experiences and lifelike conversational interactions. With Amazon Lex, the same deep learning technologies that power Amazon Alexa are now available to any developer, enabling you to quickly and easily build sophisticated, natural language, conversational bots ("chatbots").
 
 This workshop walks through the steps of creating an interactive chatbot using the AWS Lex service.
-
 
 # CoffeeBot
 
@@ -37,6 +36,12 @@ First, we'll create the Amazon Lex bot.  Then, we'll add some Lambda Functions t
 We will be creating a custom bot in the console and applying the necessary intents and custom slots in order to understand the coffee order.
 
 ### Navigate to Lex in the AWS Console
+Because of the large number of students in the class, we'll be using individual accounts provided by AWS for this lab.  If you're in the room with the instructor, pair up with a partner and ask for the login URL for your account.
+
+The login credentials are as follows:
+
+  - Username: LabUser
+  - Password: myLabP@ssw0rd!
 
 Once you are logged into your AWS account, you will be presented with a list of AWS services and a search box.  Type "Lex" into the search box and choose the "Amazon Lex" service.
 
@@ -172,7 +177,6 @@ Navigate back to the Amazon Lex console to reconfigure your bot to use the Lambd
 
 1. From the Lex Console, select the `CoffeeBot` bot and choose `Latest` from the version drop down to make changes
 1. Modify the `cafeOrderBeverageIntent` Intent
-	-  Add `Thanks for choosing PressoBot!` as the "Goodbye message"
 	- Associate it with the new `cafeOrderCoffee` Lambda function (select "Lambda function" in the "Lambda initialization and validation" area)
 		-  When prompted, allow Amazon Lex to call your new function
 	- Associate it with the new `cafeOrderCoffee` Lambda function for (select "Lambda function" in the "Fulfillment" area); remember to click "Save Intent"
