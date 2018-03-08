@@ -40,8 +40,8 @@ Because of the large number of students in the class, we'll be using individual 
 
 The login credentials are as follows:
 
-  - Username: LabUser
-  - Password: myLabP@ssw0rd!
+  - Username: 
+  - Password: 
 
 Once you are logged into your AWS account, you will be presented with a list of AWS services and a search box.  Type "Lex" into the search box and choose the "Amazon Lex" service.
 
