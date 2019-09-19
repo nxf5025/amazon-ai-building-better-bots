@@ -100,7 +100,7 @@ Slot type name | Description | Values (each entry on a separate line)
 `cafeBeverageType` | | `coffee`; `cappuccino`; `latte`; `mocha`; `chai`; `espresso`; `smoothie`
 `cafeBeverageSize` | | `kids`; `small`; `medium`; `large`; `extra large`; `six ounce`; `eight ounce`; `twelve ounce`; `sixteen ounce`; `twenty ounce`
 `cafeCreamerType` | | `two percent`; `skim milk`; `soy`; `almond`; `whole`; `skim`; `half and half`
-`cafeBeverageTemp` | | `kids`; `hot`; `iced`
+`cafeBeverageTemp` | | `hot`; `iced`
 
 #### Add Slots to the Intent
 Navigate back to the intent page of your cafeOrderBeverageIntent, locate "Slots" midway down the page.
