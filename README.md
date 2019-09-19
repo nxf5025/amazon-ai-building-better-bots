@@ -140,11 +140,11 @@ Choose "Services" from the navigation bar at the top of the page, and search for
 ![Lambda Console](./images/lambda_console.png)
 
 1. Select "Create function" in the upper right hand corner
-1. Leave NodeJS selected as the runtime.
-1. Choose an IAM role that includes the `AWSLambdaBasicExecutionRole` Managed Policy.  There may already be one named `coffeebot-lambda-role`
-    - If no such role exists, you can create a new IAM Role using one of these approaches:
-        - Choose "Create new role from template(s)", provide a role name, and choose `Basic Lambda permissions` from the "Policy templates" dropdown
-        - Choose "Create a Custom role", which should open up a new tab where an IAM role is shown; review the policy document and click "Allow"
+2. Select "Author from scratch"
+3. Function Name: `cafeOrderCoffee`
+3. Leave NodeJS selected as the runtime.
+4. Click the dropdown "Choose or create an execution role" and ensure "Create a new role with basic Lambda permissions" is checked
+5. Create Function
 
 ![Lambda](./images/lambda.png)
 
@@ -159,7 +159,8 @@ Choose "Services" from the navigation bar at the top of the page, and search for
 
 Now we'll configure a test event to ensure our Lambda function works.  
 1. At the top of the page, choose "Select a test event".
-1. Configure the Test event and test to confirm the function works as expected
+2. Configure the Test event and test to confirm the function works as expected
+    - Event name: cafeOrderCoffeeTestEvent
     - You can get the event source [here](./test/cafeOrderCoffee_test.json)
     - After saving your test event, you can choose "test" in the console to ensure it works as expected.
 
