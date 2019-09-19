@@ -30,24 +30,19 @@ Consider this conversation:
 > CoffeeBot:  Great! Your mocha will be available for pickup soon. Thanks for using CoffeeBot!
 
 
-First, we'll create the Amazon Lex bot.  Then, we'll add some Lambda Functions to bring it to life.  Lastly, as an optional step, create an Android application with the Mobile Hub and the Lex Android SDK.
+First, we'll create the Amazon Lex bot.  Then, we'll add some Lambda Functions to bring it to life.
 
 ## Amazon Lex bot
 We will be creating a custom bot in the console and applying the necessary intents and custom slots in order to understand the coffee order.
 
 ### Navigate to Lex in the AWS Console
-Because of the large number of students in the class, we'll be using individual accounts provided by AWS for this lab.  If you're in the room with the instructor, pair up with a partner and ask for the login URL for your account.
-
-The login credentials are as follows:
-
-  - Username: 
-  - Password: 
+Because of the large number of students in the class, we'll be sharing VPCx accounts for this lab. Refer to the excel sheet sent out for your sign in link, username, password, and region.
 
 Once you are logged into your AWS account, you will be presented with a list of AWS services and a search box.  Type "Lex" into the search box and choose the "Amazon Lex" service.
 
 ![Console](./images/console.png)
 
-You may be directed to select at region.  At the time of writing, Lex is only available in the Virginia and Ireland regions.  Choose the region that is the closest to you or the one that the instructor directs.
+If you have not already done so. Select the region assigned to you in the speadsheet.
 
 ![Region](./images/region.png)
 
@@ -56,7 +51,7 @@ If this is your first time in the Amazon Lex console, you may be prompted with a
 ![LexMainPage](./images/lexmain.png)
 
 #### Create bot
-First, we'll create the bot.  
+First, we'll create the bot.
 
 1. From the Amazon Lex console, select "Bots" on the left and then choose "Create" and choose "Custom Bot".  Create a Custom bot with these settings (you can see these in the "Settings" tab later)
     - Bot name:  `CoffeeBot`
@@ -185,30 +180,6 @@ Navigate back to the Amazon Lex console to reconfigure your bot to use the Lambd
 1. Test using the Amazon Lex Console; do you see any responses when you ask `May I have a coffee?`
 
 Try to order a beverage like a coffee.  You should see a message stating that it is not available.  Now try to order a mocha or a chai and see the response.  To understand why you're getting a different response than earlier, take look at the source code for the lambda validation.
-
-## Android or Web Application
-If you'd like to explore further, you can integrate your Amazon Lex bot with an Android application or a web page.  This is where you'd use the "Publish" feature of Lex to push your configured version to production.
-
-### Android Application 
-You'll need the following in addition to your AWS account:
-- Android development environment ([download](https://developer.android.com/sdk))
-- To test voice (you can use the simulator for text)
-    - An Android device
-    - A USB cable for USB debugging ([more info for Amazon Fire tablets](https://developer.amazon.com/public/solutions/devices/fire-tablets/app-development/setting-up-your-development-environment-for-fire-tablets))
-
-
-1. From the Mobile Hub console, create a new project called `CoffeeBot`.
-1. Add the "Conversational Bots" feature to the project.  When prompted, import `CoffeeBot`.  Mobile Hub takes care of a number of important details behind the scenes.  A new Amazon Cognito Federated Identity Pool is created for this new app along with roles so that the users can interact with Lex (using voice and text).
-1. Source code for the new app is immediately available for download.
-1. Follow the instructions in the `READ_ME/index.html` file to setup, compile, and run the app.
-
-### Web Application
-
-Using the AWS SDK for Javascript, you can integrate your Amazon Lex bot in a web page that will both capture and return audio to your end users.
-
-[This article on the machine learning blog](https://aws.amazon.com/blogs/machine-learning/capturing-voice-input-in-a-browser/) will walk you through the steps to setup this integration.  When using the Lex PostContent API call, you will pass the name of your deployed bot as a parameter.
-
-You can also use the native integrations to connect your bot to Facebook Messenger, Slack, Twilio, and Kik.
 
 # Cleanup
 
