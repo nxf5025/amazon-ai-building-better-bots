@@ -55,8 +55,7 @@ First, we'll create the bot.
 
 1. From the Amazon Lex console, select "Bots" on the left and then choose "Create" and choose "Custom Bot".  Create a Custom bot with these settings (you can see these in the "Settings" tab later)
     - Bot name:  `CoffeeBot`
-		- To work independently in a shared environment, use your initials in the name (e.g., `CoffeeBotXXX`)
-    - Output voice:  `Salli`
+    - Output voice:  `Pick Any Voice`
     - Session timeout:  `5 min`
     - IAM role:  (accept the default) `AWSServiceRoleForLexBots`
 	- COPPA:  (our bot is not directed at children) `No`
@@ -67,7 +66,6 @@ First, we'll create the bot.
 ![Intents](./images/intents.png)
 
 From the left, add a new Intent called `cafeOrderBeverageIntent` with the following settings and click "Save Intent" to save the Intent.  
-To work independently in a shared environment, use your initials in the Intent name (e.g., `cafeOrderBeverageIntentXXX`).
 
 Add the following options to your intent:
 
@@ -79,9 +77,9 @@ May I have a {BeverageSize} {Creamer} {BeverageType}
 Can I get a {BeverageSize} {BeverageTemp} {Creamer} {BeverageType}
 Let me get a {BeverageSize} {Creamer} {BeverageType}
 ```
-1. Lambda initialization and validation (leave unchecked)
-1. Fulfillment:  choose "Return parameters to client" for now
-1. Confirmation prompt:  `You'd like me to order a {BeverageSize} {BeverageType}.  Is that right?` to confirm and `Okay.  Nothing to order this time.  See you next time!` to cancel.
+2. Lambda initialization and validation (leave unchecked)
+3. Fulfillment:  choose "Return parameters to client" for now
+4. Confirmation prompt:  `You'd like me to order a {BeverageSize} {BeverageType}.  Is that right?` to confirm and `Okay.  Nothing to order this time.  See you next time!` to cancel.
 
 When everything is entered, choose "Save Intent" at the bottom.
 
@@ -91,7 +89,7 @@ In the upper left hand corner, select the "+" next to "Slot Type" to add new slo
 
 ![Slots](./images/slots.png)
 
-Add the following Slot types (each value should be a separate entry). To work independently in a shared environment, use your initials in the names (e.g., `cafeBeverageTypeXXX`).  
+Add the following Slot types (each value should be a separate entry).
 
 Note:  Although they are saved with the AWS Account, ***Slot Types will only show up in the list on the left when they are associated in the next step.***  Keep creating slots until you've completed all in the following table:
 
@@ -142,7 +140,6 @@ Choose "Services" from the navigation bar at the top of the page, and search for
 ![Lambda Console](./images/lambda_console.png)
 
 1. Select "Create function" in the upper right hand corner
-1. To work independently in a shared environment, use your initials in the function name (e.g., `cafeOrderCoffeeXXX`)
 1. Leave NodeJS selected as the runtime.
 1. Choose an IAM role that includes the `AWSLambdaBasicExecutionRole` Managed Policy.  There may already be one named `coffeebot-lambda-role`
     - If no such role exists, you can create a new IAM Role using one of these approaches:
