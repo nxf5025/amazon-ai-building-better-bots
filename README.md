@@ -97,10 +97,10 @@ Choose "Save Slot Type" when each one is completed.
 
 Slot type name | Description | Values (each entry on a separate line)
 -------------- | ----------- | --------------------
-`cafeBeverageTypeXXX` | *Slot types are shared at the account level so text would help other developers determine if they can reuse this Slot type.*| `coffee`; `cappuccino`; `latte`; `mocha`; `chai`; `espresso`; `smoothie`
-`cafeBeverageSizeXXX` | | `kids`; `small`; `medium`; `large`; `extra large`; `six ounce`; `eight ounce`; `twelve ounce`; `sixteen ounce`; `twenty ounce`
-`cafeCreamerTypeXXX` | | `two percent`; `skim milk`; `soy`; `almond`; `whole`; `skim`; `half and half`
-`cafeBeverageTempXXX` | | `kids`; `hot`; `iced`
+`cafeBeverageType` | *Slot types are shared at the account level so text would help other developers determine if they can reuse this Slot type.*| `coffee`; `cappuccino`; `latte`; `mocha`; `chai`; `espresso`; `smoothie`
+`cafeBeverageSize` | | `kids`; `small`; `medium`; `large`; `extra large`; `six ounce`; `eight ounce`; `twelve ounce`; `sixteen ounce`; `twenty ounce`
+`cafeCreamerType` | | `two percent`; `skim milk`; `soy`; `almond`; `whole`; `skim`; `half and half`
+`cafeBeverageTemp` | | `kids`; `hot`; `iced`
 
 #### Add Slots to the Intent
 Navigate back to the intent page of your cafeOrderBeverageIntent, locate "Slots" midway down the page.
@@ -183,14 +183,14 @@ Try to order a beverage like a coffee.  You should see a message stating that it
 When you have completed the lab, please delete the following resources from your account when complete.
 
 - In the Lambda console
-    - Lambda function `cafeOrderCoffeeXXX`
+    - Lambda function `cafeOrderCoffee`
 - In the Lex console (in this order)
     1. Bots
-        - `CoffeeBotXXX`
+        - `CoffeeBot`
     1. Intents
-        - `cafeOrderBeverageIntentXXX`
+        - `cafeOrderBeverageIntent`
     1. Slot Types
-        - `cafeBeverageSizeXXX`
-        - `cafeBeverageTempXXX`
-        - `cafeBeverageTypeXXX`
-        - `cafeCreamerTypeXXX`
+        - `cafeBeverageSize`
+        - `cafeBeverageTemp`
+        - `cafeBeverageType`
+        - `cafeCreamerType`
