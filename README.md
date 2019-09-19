@@ -97,7 +97,7 @@ Choose "Save Slot Type" when each one is completed.
 
 Slot type name | Description | Values (each entry on a separate line)
 -------------- | ----------- | --------------------
-`cafeBeverageType` | *Slot types are shared at the account level so text would help other developers determine if they can reuse this Slot type.*| `coffee`; `cappuccino`; `latte`; `mocha`; `chai`; `espresso`; `smoothie`
+`cafeBeverageType` | | `coffee`; `cappuccino`; `latte`; `mocha`; `chai`; `espresso`; `smoothie`
 `cafeBeverageSize` | | `kids`; `small`; `medium`; `large`; `extra large`; `six ounce`; `eight ounce`; `twelve ounce`; `sixteen ounce`; `twenty ounce`
 `cafeCreamerType` | | `two percent`; `skim milk`; `soy`; `almond`; `whole`; `skim`; `half and half`
 `cafeBeverageTemp` | | `kids`; `hot`; `iced`
